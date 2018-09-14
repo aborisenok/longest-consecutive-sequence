@@ -1,3 +1,25 @@
 module.exports = function longestConsecutiveLength(array) {
-  // your solution here
+
+   if(array.length === 0) return 0;
+   if(array.length === 1) return 1;
+
+  var arr = array.sort((a,b) => (a-b));
+  
+  var maxLength = 0;
+  var count = 1;
+  
+  for(let i = 1; i < arr.length-1; i++){
+    if(arr[i] === arr[i-1]){
+      continue;
+    }else if(arr[i] === arr[i-1]+1){
+      count++;
+    }else{
+      if(count > maxLength){
+        maxLength = count;
+      }
+      count = 1;
+    }
+  }
+
+  return maxLength > count ? maxLength : count;
 }
